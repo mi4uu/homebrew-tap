@@ -13,15 +13,8 @@ brew install --cask browser-router
 | --- | --- |
 | [`browser-router`](Casks/browser-router.rb) | [Browser Router](https://github.com/mi4uu/macos-browser-router) — menubar app that sends each link to the right browser or browser profile |
 
-Browser Router is signed ad-hoc rather than notarized by Apple, so macOS quarantines it
-after a normal `brew install --cask`. Either install it without the quarantine flag:
-
-```sh
-brew install --cask --no-quarantine browser-router
-```
-
-or clear the flag afterwards:
-
-```sh
-xattr -dr com.apple.quarantine "/Applications/Browser Router.app"
-```
+Browser Router is signed ad-hoc rather than notarized by Apple ($99/year, and it is a free
+project), so Gatekeeper would otherwise refuse to open the downloaded copy. The cask clears
+the quarantine flag in a `postflight` block — that is what makes `brew install` enough on
+its own, and it is right there in [the cask](Casks/browser-router.rb) if you want to read it
+before running it.

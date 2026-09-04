@@ -11,6 +11,14 @@ cask "browser-router" do
 
   app "Browser Router.app"
 
+  # The app is signed ad-hoc rather than notarized by Apple, so Gatekeeper would refuse to
+  # open the downloaded copy. Homebrew dropped --no-quarantine in 6.0, so clear it here.
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Browser Router.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Application Support/BrowserRouter",
     "~/Library/Preferences/com.mi4u.browserrouter.plist",
