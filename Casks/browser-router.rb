@@ -7,7 +7,7 @@ cask "browser-router" do
   desc "Menubar app that routes each link to the right browser or browser profile"
   homepage "https://github.com/mi4uu/macos-browser-router"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Browser Router.app"
 
